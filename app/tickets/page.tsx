@@ -12,7 +12,7 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table"
 import { Plus, Download, Search, Loader2, AlertCircle, Eye } from "lucide-react"
-import { api } from "@/lib/api"
+import { httpService } from "@/lib/services"
 import { Ticket, TicketsListResponse } from "@/types/tickets"
 import { useAuth } from "@/app/providers"
 import DashboardLayout from "@/components/templates/dashboard"
@@ -56,7 +56,7 @@ export default function TicketsPage() {
       if (date?.from) params.startDate = format(date.from, "yyyy-MM-dd");
       if (date?.to) params.endDate = format(date.to, "yyyy-MM-dd");
 
-      const response = await api.get("/tickets", { params });
+      const response = await httpService.getTickets({ params });
       return response.data;
     },
   });
@@ -332,7 +332,7 @@ export default function TicketsPage() {
                 <span className="text-xs text-muted-foreground">
                   Showing page <strong>{meta.page}</strong> of <strong>{meta.totalPage}</strong> ({meta.totalRecord} records)
                 </span>
-                
+
                 <div className="flex items-center gap-1.5">
                   <Button
                     size="sm"
@@ -342,7 +342,7 @@ export default function TicketsPage() {
                   >
                     Previous
                   </Button>
-                  
+
                   {/* Generate numbers */}
                   {Array.from({ length: parseInt(meta.totalPage) }, (_, i) => i + 1).map((pageNum) => (
                     <Button

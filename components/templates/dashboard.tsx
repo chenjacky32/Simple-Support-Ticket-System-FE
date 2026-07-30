@@ -1,8 +1,8 @@
 'use client'
 
 import * as React from "react"
-import Sidebar from "./sidebar"
-import Header from "./header"
+import Sidebar from "@/components/templates/sidebar"
+import Header from "@/components/templates/header"
 import { useAuth } from "@/app/providers"
 
 export default function DashboardLayout({
@@ -13,7 +13,14 @@ export default function DashboardLayout({
   title?: string;
 }) {
   const { user, isLoading } = useAuth();
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+
+  React.useEffect(() => {
+    // Auto-close sidebar on smaller screens
+    if (window.innerWidth < 1024) {
+      setSidebarOpen(false);
+    }
+  }, []);
 
   // Loading state
   if (isLoading) {

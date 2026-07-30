@@ -18,7 +18,7 @@ export default function Header({ onMenuClick, title }: HeaderProps) {
       <div className="flex items-center gap-3">
         <button
           onClick={onMenuClick}
-          className="rounded-md p-2 hover:bg-muted lg:hidden text-foreground"
+          className="rounded-md p-2 hover:bg-muted text-foreground"
           aria-label="Open navigation menu"
         >
           <Menu className="size-5" />
@@ -43,10 +43,10 @@ export default function Header({ onMenuClick, title }: HeaderProps) {
         {/* User Status / Avatar */}
         {user && (
           <div className="flex items-center gap-2">
-            <span className="hidden sm:inline text-sm font-medium text-foreground">{user.name}</span>
-            <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold text-xs border border-primary/20">
+            <span className="hidden sm:inline text-sm font-medium text-foreground">Hello, {user.name}</span>
+            {/* <div className="flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold text-xs border border-primary/20">
               {user.name.slice(0, 2).toUpperCase()}
-            </div>
+            </div> */}
           </div>
         )}
       </div>

@@ -9,7 +9,7 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table"
 import { Search, Loader2, AlertCircle, CheckCircle, ShieldAlert, UserCheck, UserX } from "lucide-react"
-import { api } from "@/lib/api"
+import { httpService } from "@/lib/services"
 import { UserProfile } from "@/types/auth"
 import { useAuth } from "@/app/providers"
 import DashboardLayout from "@/components/templates/dashboard"
@@ -59,7 +59,7 @@ export default function UserManagementPage() {
       if (debouncedSearch) params.search = debouncedSearch;
       if (status) params.status = status; // "active" or "inactive"
 
-      const response = await api.get("/users/list", { params });
+      const response = await httpService.getUsersList({ params });
       return response.data;
     },
     enabled: currentUser?.role === "SUPERADMIN",
@@ -124,11 +124,10 @@ export default function UserManagementPage() {
         cell: (info) => {
           const active = info.getValue();
           return (
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${
-              active 
-                ? "bg-emerald-500/10 text-emerald-700 border-emerald-500/20" 
-                : "bg-amber-500/10 text-amber-700 border-amber-500/20"
-            }`}>
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${active
+              ? "bg-emerald-500/10 text-emerald-700 border-emerald-500/20"
+              : "bg-amber-500/10 text-amber-700 border-amber-500/20"
+              }`}>
               {active ? "Active" : "Pending Activation"}
             </span>
           );
@@ -308,7 +307,7 @@ export default function UserManagementPage() {
                 <span className="text-xs text-muted-foreground">
                   Showing page <strong>{meta.page}</strong> of <strong>{meta.totalPage}</strong> ({meta.totalRecord} records)
                 </span>
-                
+
                 <div className="flex items-center gap-1.5">
                   <Button
                     size="sm"
@@ -318,7 +317,7 @@ export default function UserManagementPage() {
                   >
                     Previous
                   </Button>
-                  
+
                   {Array.from({ length: parseInt(meta.totalPage) }, (_, i) => i + 1).map((pageNum) => (
                     <Button
                       key={pageNum}
