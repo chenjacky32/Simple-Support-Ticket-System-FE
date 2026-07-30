@@ -1,0 +1,338 @@
+# Instincts generated from https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+# Generated: 2026-07-30T19:22:29.136Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: Simple-Support-Ticket-System-FE-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System FE Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: feat
+
+## Evidence
+
+- 1 commits analyzed
+- Detected conventional commit pattern
+- Examples: feat: add login and register form
+
+---
+id: Simple-Support-Ticket-System-FE-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System FE Commit Length
+
+## Action
+
+Keep commit messages concise (~33 characters)
+
+## Evidence
+
+- Average commit message length: 33 chars
+- Based on 1 commits
+
+---
+id: Simple-Support-Ticket-System-FE-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System FE Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: Simple-Support-Ticket-System-FE-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System FE Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: Simple-Support-Ticket-System-FE-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System FE Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: Simple-Support-Ticket-System-FE-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System FE Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: simple-support-ticket-system-fe-instinct-file-naming
+trigger: "When creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct File Naming
+
+## Action
+
+Name the file using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.files
+
+---
+id: simple-support-ticket-system-fe-instinct-function-naming
+trigger: "When defining a new function"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Function Naming
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.functions
+
+---
+id: simple-support-ticket-system-fe-instinct-class-naming
+trigger: "When defining a new class"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Class Naming
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in namingConventions.classes
+
+---
+id: simple-support-ticket-system-fe-instinct-constant-naming
+trigger: "When declaring a constant"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in namingConventions.constants
+
+---
+id: simple-support-ticket-system-fe-instinct-import-alias
+trigger: "When importing modules"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Import Alias
+
+## Action
+
+Use alias import style
+
+## Evidence
+
+- Pattern in importStyle: alias
+
+---
+id: simple-support-ticket-system-fe-instinct-export-mixed
+trigger: "When exporting modules or members"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Export Mixed
+
+## Action
+
+Use both named and default exports as appropriate
+
+## Evidence
+
+- Pattern in exportStyle: mixed
+
+---
+id: simple-support-ticket-system-fe-instinct-commit-format
+trigger: "When making a git commit"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Commit Format
+
+## Action
+
+Format the commit message using the conventional commits style, starting with 'feat:' for new features
+
+## Evidence
+
+- Pattern in commits.type: conventional
+- Prefix 'feat' in commits.prefixes
+- Example: 'feat: add login and register form'
+
+---
+id: simple-support-ticket-system-fe-instinct-commit-length
+trigger: "When writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Commit Length
+
+## Action
+
+Keep the commit message concise, around 33 characters on average
+
+## Evidence
+
+- Pattern in commits.averageLength: 33
+
+---
+id: simple-support-ticket-system-fe-instinct-error-handling
+trigger: "When handling errors in code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Error Handling
+
+## Action
+
+Use try-catch blocks for error handling
+
+## Evidence
+
+- Pattern in errorHandling.style: try-catch
+
+---
+id: simple-support-ticket-system-fe-instinct-test-location
+trigger: "When adding tests"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Test Location
+
+## Action
+
+Place test files in a separate folder from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation: separate
+
+---
+id: simple-support-ticket-system-fe-instinct-test-pattern-absent
+trigger: "When writing new tests"
+confidence: 0.3
+domain: testing
+source: repo-analysis
+source_repo: chenjacky32/Simple-Support-Ticket-System-FE
+---
+
+# Simple Support Ticket System Fe Instinct Test Pattern Absent
+
+## Action
+
+No specific test pattern detected; follow general best practices for the framework in use
+
+## Evidence
+
+- No explicit testing patterns found in analysis
+
