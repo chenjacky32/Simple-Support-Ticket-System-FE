@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { Providers } from "./providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Hello World",
-  description: "Test Next JS",
+  title: "Simple Support Ticket System",
+  description: "Ticketing system for managing internal support requests",
 };
 
 export default function RootLayout({
@@ -23,12 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        {children}
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <body className="min-h-full bg-background text-foreground flex flex-col font-sans">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
