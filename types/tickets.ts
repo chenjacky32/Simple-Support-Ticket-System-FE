@@ -32,11 +32,11 @@ export interface TicketDetail extends Ticket {
   replies: TicketReply[];
 }
 
-export interface TicketMeta {
-  page: string;
-  size: string;
-  totalRecord: string;
-  totalPage: string;
+export interface ResponseMeta {
+  page: number;
+  size: number;
+  totalRecord: number;
+  totalPage: number;
   hasPrev: boolean;
   hasNext: boolean;
 }
@@ -44,7 +44,7 @@ export interface TicketMeta {
 export interface TicketsListResponse {
   status: string;
   message: string;
-  meta: TicketMeta;
+  meta: ResponseMeta;
   data: Ticket[];
 }
 

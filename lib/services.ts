@@ -25,11 +25,11 @@ export const httpService = {
   },
 
   // --- Tickets ---
-  getTickets: async (params?: Record<string, any>) => {
+  getTicketsList: async (params?: Record<string, any>) => {
     const response = await http.get("/tickets", { params });
     return response.data;
   },
-  getTicket: async (slug: string) => {
+  getTicketDetails: async (slug: string) => {
     const response = await http.get(`/tickets/${slug}`);
     return response.data;
   },
@@ -49,6 +49,10 @@ export const httpService = {
   // --- Users ---
   getUsers: async (params?: Record<string, any>) => {
     const response = await http.get("/users", { params });
+    return response.data;
+  },
+  getUsersList: async (params?: Record<string, any>) => {
+    const response = await http.get("/users/list", { params });
     return response.data;
   },
 };
