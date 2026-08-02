@@ -49,5 +49,19 @@ export const ticketHelper = {
       const dataUri = `data:text/csv;charset=utf-8,${encodeURIComponent(csvContent)}`;
       ticketHelper.triggerDownload(dataUri, `tickets_export_${Date.now()}.csv`);
     }
-  }
+  },
+
+  // 5. Badge Styling : Styling for Ticket Status
+  getBadgeStatusColor: (status: string) => {
+    switch (status) {
+      case "OPENED":
+        return "bg-badge-1/10 text-badge-1 border-badge-1/20";
+      case "INPROGRESS":
+        return "bg-badge-2/10 text-badge-2 border-badge-2/20";
+      case "RESOLVED":
+        return "bg-badge-3/10 text-badge-3 border-badge-3/20";
+      default:
+        return "bg-muted text-muted-foreground border-border";
+    }
+  },
 }

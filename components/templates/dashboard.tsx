@@ -49,8 +49,8 @@ export default function DashboardLayout({
         <Header onMenuClick={() => setSidebarOpen(true)} title={title} />
 
         {/* Scrollable Work Area */}
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-muted/10">
-          <div className="mx-auto max-w-7xl">
+        <main className="w-full flex-1 overflow-y-auto p-6 md:p-8 bg-muted/10 mx-auto">
+          <div className="mx-auto my-16">
             {children}
           </div>
         </main>

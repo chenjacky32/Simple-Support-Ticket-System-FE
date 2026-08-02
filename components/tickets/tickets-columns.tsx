@@ -41,22 +41,22 @@ export const TicketsColumns = (page: number = 1, size: number = 10) => [
     header: "Status",
     cell: (info) => {
       const val = info.getValue();
-      if (!val) return <span className="text-muted-foreground">-</span>;
+      if (!val) return <div className="text-muted-foreground">-</div>;
 
       const rawStatus = val.toUpperCase();
-      let variant: "default" | "secondary" | "destructive" | "outline" = "default";
+      let badgeColor = "bg-muted text-muted-foreground border-border";
 
       if (rawStatus === "OPENED") {
-        variant = "default";
+        badgeColor = "bg-badge-1/10 text-badge-1 border-badge-1/20";
       } else if (rawStatus === "IN_PROGRESS" || rawStatus === "INPROGRESS") {
-        variant = "secondary";
+        badgeColor = "bg-badge-2/10 text-badge-2 border-badge-2/20";
       } else if (rawStatus === "RESOLVED") {
-        variant = "outline";
+        badgeColor = "bg-badge-3/10 text-badge-3 border-badge-3/20";
       }
 
       return (
-        <Badge variant={variant} className="capitalize">
-          {val.toLowerCase().replace('_', ' ')}
+        <Badge className={`capitalize ${badgeColor} cursor-pointer`}>
+          {val.toUpperCase().replace('_', ' ')}
         </Badge>
       );
     },

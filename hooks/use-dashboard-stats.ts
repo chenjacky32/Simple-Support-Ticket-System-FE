@@ -4,7 +4,7 @@ import { format, parseISO } from "date-fns"
 import { type DateRange } from "react-day-picker"
 import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { httpService } from "@/lib/services"
-import { DashboardStats } from "@/types/tickets"
+import { DashboardStats } from "@/types/dashboard"
 
 export function useDashboardStats() {
   const router = useRouter();
