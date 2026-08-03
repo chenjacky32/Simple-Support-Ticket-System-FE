@@ -1,8 +1,16 @@
+import * as React from "react"
 import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import { Loader2 } from "lucide-react"
 import { TicketDetail } from "@/types/tickets"
-import React from "react"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface TicketDetailHeaderProps {
   ticket: TicketDetail;
@@ -46,17 +54,24 @@ export function TicketDetailHeader({
         <div className="flex flex-col gap-1.5 shrink-0 bg-muted/30 border border-border p-3 rounded-lg">
           <label className="text-xs font-bold text-muted-foreground uppercase" htmlFor="change-status">Change Status</label>
           <div className="flex items-center gap-2">
-            <select
+            <Select
               id="change-status"
-              value={rawStatus === "OPEN" ? "Opened" : rawStatus === "IN_PROGRESS" || rawStatus === "INPROGRESS" ? "Inprogress" : "Resolved"}
-              onChange={handleStatusChange}
+              value={rawStatus === "OPENED" ? "OPENED" : rawStatus === "INPROGRESS" ? "INPROGRESS" : "RESOLVED"}
+              onValueChange={(value) => handleStatusChange({ target: { value } } as React.ChangeEvent<HTMLSelectElement>)}
               disabled={statusMutation.isPending}
-              className="h-8 rounded-md border border-input bg-card px-2.5 text-xs text-foreground shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
             >
-              <option value="OPENED">Opened</option>
-              <option value="INPROGRESS">In Progress</option>
-              <option value="RESOLVED">Resolved</option>
-            </select>
+              <SelectTrigger className="h-9">
+                <SelectValue placeholder="All Statuses" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="All">All Statuses</SelectItem>
+                  <SelectItem value="OPENED">OPENED</SelectItem>
+                  <SelectItem value="INPROGRESS">INPROGRESS</SelectItem>
+                  <SelectItem value="RESOLVED">RESOLVED</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             {statusMutation.isPending && <Loader2 className="size-4 animate-spin text-primary" />}
           </div>
         </div>

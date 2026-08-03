@@ -50,9 +50,9 @@ export function TicketsFilterToolbar({ search, setSearch, status, setStatus, dat
         <FieldLabel htmlFor="status" className="text-xs font-semibold uppercase">Status</FieldLabel>
         <div className="relative">
           <Select
-            value={status || "all"}
+            value={status || "ALL"}
             onValueChange={(val) => {
-              setStatus(val === "all" ? "" : val)
+              setStatus(val === "ALL" ? "" : val)
               setPage(1)
             }}
           >
@@ -61,10 +61,10 @@ export function TicketsFilterToolbar({ search, setSearch, status, setStatus, dat
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="all">All Statuses</SelectItem>
-                <SelectItem value="Opened">Opened</SelectItem>
-                <SelectItem value="Inprogress">In Progress</SelectItem>
-                <SelectItem value="Resolved">Resolved</SelectItem>
+                <SelectItem value="ALL">All Statuses</SelectItem>
+                <SelectItem value="OPENED">OPENED</SelectItem>
+                <SelectItem value="INPROGRESS">INPROGRESS</SelectItem>
+                <SelectItem value="RESOLVED">RESOLVED</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
