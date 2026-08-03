@@ -1,5 +1,11 @@
 export type UserRole = "USERS" | "ADMIN" | "SUPERADMIN";
 
+export interface UserProfileResponse {
+  status: "success" | "fail";
+  message: string;
+  data?: UserProfile;
+}
+
 export interface UserProfile {
   id: string;
   name: string;

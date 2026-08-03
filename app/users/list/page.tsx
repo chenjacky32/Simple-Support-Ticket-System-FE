@@ -59,8 +59,8 @@ export default function UserManagementPage() {
       if (debouncedSearch) params.search = debouncedSearch;
       if (status) params.status = status; // "active" or "inactive"
 
-      const response = await httpService.getUsersList({ params });
-      return response.data;
+      const response = await httpService.getUsersList(params);
+      return response;
     },
     enabled: currentUser?.role === "SUPERADMIN",
   });

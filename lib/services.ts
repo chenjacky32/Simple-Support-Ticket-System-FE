@@ -1,11 +1,13 @@
 import { http } from "@/lib/api";
 import type { LoginInput, RegisterInput } from "@/schemas/auth";
 import type { TicketInput } from "@/schemas/ticket";
-
+import { AuthResponse, UserProfileResponse } from "@/types/auth";
+import { DashboardStatsResponse } from "@/types/dashboard";
+import { TicketDetailResponse, TicketsListResponse } from "@/types/tickets";
 
 export const httpService = {
   // --- Auth ---
-  login: async (data: LoginInput) => {
+  login: async (data: LoginInput): Promise<AuthResponse> => {
     const response = await http.post("/auth/login", data);
     return response.data;
   },
@@ -13,23 +15,27 @@ export const httpService = {
     const response = await http.post("/auth/register", data);
     return response.data;
   },
-  getMe: async () => {
+  getMe: async (): Promise<UserProfileResponse> => {
     const response = await http.get("/users/profile");
     return response.data;
   },
 
   // --- Dashboard ---
-  getDashboardStats: async (params?: Record<string, any>) => {
+  getDashboardStats: async (
+    params?: Record<string, any>,
+  ): Promise<DashboardStatsResponse> => {
     const response = await http.get("/dashboard/stat", { params });
     return response.data;
   },
 
   // --- Tickets ---
-  getTickets: async (params?: Record<string, any>) => {
+  getTicketsList: async (
+    params?: Record<string, any>,
+  ): Promise<TicketsListResponse> => {
     const response = await http.get("/tickets", { params });
     return response.data;
   },
-  getTicket: async (slug: string) => {
+  getTicketDetails: async (slug: string): Promise<TicketDetailResponse> => {
     const response = await http.get(`/tickets/${slug}`);
     return response.data;
   },
@@ -37,11 +43,14 @@ export const httpService = {
     const response = await http.post("/tickets", data);
     return response.data;
   },
-  replyTicket: async (slug: string, data: { message: string; attachments?: string[] }) => {
+  replyTicket: async (
+    slug: string,
+    data: { message: string; attachments?: string[] },
+  ) => {
     const response = await http.post(`/tickets/${slug}/replies`, data);
     return response.data;
   },
-  updateTicketStatus: async (slug: string, data: { status: string; reason?: string }) => {
+  updateTicketStatus: async (slug: string, data: { status: string }) => {
     const response = await http.patch(`/tickets/${slug}/status`, data);
     return response.data;
   },
@@ -49,6 +58,10 @@ export const httpService = {
   // --- Users ---
   getUsers: async (params?: Record<string, any>) => {
     const response = await http.get("/users", { params });
+    return response.data;
+  },
+  getUsersList: async (params?: Record<string, any>) => {
+    const response = await http.get("/users/list", { params });
     return response.data;
   },
 };

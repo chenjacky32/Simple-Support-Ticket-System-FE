@@ -3,6 +3,7 @@
 import * as React from "react"
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { type DateRange } from "react-day-picker"
 
 import { Button } from "@/components/ui/button"
@@ -15,18 +16,20 @@ import {
 } from "@/components/ui/popover"
 
 interface DatePickerWithRangeProps {
-  date: DateRange | undefined;
-  setDate: (date: DateRange | undefined) => void;
-  className?: string;
+    date: DateRange | undefined;
+    setDate: (date: DateRange | undefined) => void;
+    className?: string;
+    labelClassName?: string;
+    buttonClassName?: string;
 }
 
-export function DatePickerWithRange({ date, setDate, className }: DatePickerWithRangeProps) {
+export function DatePickerWithRange({ date, setDate, className, labelClassName, buttonClassName }: DatePickerWithRangeProps) {
     return (
         <Field className={className}>
-            <FieldLabel htmlFor="date-picker-range">Date Filter</FieldLabel>
+            <FieldLabel htmlFor="date-picker-range" className={labelClassName}>Date Filter</FieldLabel>
             <Popover>
                 <PopoverTrigger render={
-                    <Button variant="outline" id="date-picker-range" className="justify-start px-2.5 font-normal w-full">
+                    <Button variant="outline" id="date-picker-range" className={cn("justify-start px-2.5 font-normal w-full", buttonClassName)}>
                         <CalendarIcon data-icon="inline-start" />
                         {date?.from ? (
                             date.to ? (

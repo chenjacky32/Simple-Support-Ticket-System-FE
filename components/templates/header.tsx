@@ -14,7 +14,9 @@ export default function Header({ onMenuClick, title }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-border bg-card px-6">
+    <header className="w-full flex h-16 fixed top-0 items-center 
+            justify-start border-b border-border 
+            bg-card p-6 md:p-8 mx-auto">
       <div className="flex items-center gap-3">
         <button
           onClick={onMenuClick}

@@ -1,6 +1,12 @@
-import { UserProfile } from "./auth";
+import { UserProfile } from "@/types/auth";
 
-export type TicketStatus = "Opened" | "Inprogress" | "Resolved" | "OPENED" | "IN_PROGRESS" | "RESOLVED";
+export enum TicketStatusEnum {
+  OPENED = "OPENED",
+  INPROGRESS = "IN_PROGRESS",
+  RESOLVED = "RESOLVED",
+}
+
+export type TicketStatus = "Opened" | "Inprogress" | "Resolved" | TicketStatusEnum.INPROGRESS | TicketStatusEnum.OPENED | TicketStatusEnum.RESOLVED;
 
 export interface TicketCreatedBy {
   name: string;
@@ -32,11 +38,11 @@ export interface TicketDetail extends Ticket {
   replies: TicketReply[];
 }
 
-export interface TicketMeta {
-  page: string;
-  size: string;
-  totalRecord: string;
-  totalPage: string;
+export interface ResponseMeta {
+  page: number;
+  size: number;
+  totalRecord: number;
+  totalPage: number;
   hasPrev: boolean;
   hasNext: boolean;
 }
@@ -44,20 +50,12 @@ export interface TicketMeta {
 export interface TicketsListResponse {
   status: string;
   message: string;
-  meta: TicketMeta;
+  meta: ResponseMeta;
   data: Ticket[];
 }
 
-export interface DashboardStats {
-  startDate: string;
-  endDate: string;
-  totalTickets: number;
-  openedTickets: number;
-  inprogressTickets: number;
-  resolvedTickets: number;
-  statusCompositions: {
-    status: string;
-    percentage: number;
-    count: number;
-  }[];
+export interface TicketDetailResponse {
+  status: string;
+  message: string;
+  data: TicketDetail;
 }
