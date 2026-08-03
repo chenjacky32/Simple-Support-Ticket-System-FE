@@ -1,7 +1,7 @@
 import { http } from "@/lib/api";
 import type { LoginInput, RegisterInput } from "@/schemas/auth";
 import type { TicketInput } from "@/schemas/ticket";
-import { AuthResponse, UserProfileResponse, } from "@/types/auth";
+import { AuthResponse, UserProfileResponse } from "@/types/auth";
 import { DashboardStatsResponse } from "@/types/dashboard";
 import { TicketDetailResponse, TicketsListResponse } from "@/types/tickets";
 
@@ -21,13 +21,17 @@ export const httpService = {
   },
 
   // --- Dashboard ---
-  getDashboardStats: async (params?: Record<string, any>): Promise<DashboardStatsResponse> => {
+  getDashboardStats: async (
+    params?: Record<string, any>,
+  ): Promise<DashboardStatsResponse> => {
     const response = await http.get("/dashboard/stat", { params });
     return response.data;
   },
 
   // --- Tickets ---
-  getTicketsList: async (params?: Record<string, any>): Promise<TicketsListResponse> => {
+  getTicketsList: async (
+    params?: Record<string, any>,
+  ): Promise<TicketsListResponse> => {
     const response = await http.get("/tickets", { params });
     return response.data;
   },
@@ -39,7 +43,10 @@ export const httpService = {
     const response = await http.post("/tickets", data);
     return response.data;
   },
-  replyTicket: async (slug: string, data: { message: string; attachments?: string[] }) => {
+  replyTicket: async (
+    slug: string,
+    data: { message: string; attachments?: string[] },
+  ) => {
     const response = await http.post(`/tickets/${slug}/replies`, data);
     return response.data;
   },
