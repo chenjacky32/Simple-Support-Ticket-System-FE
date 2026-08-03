@@ -51,7 +51,7 @@ export default function CreateTicketPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <TicketInput
                   id="title"
-                  label="Ticket Title"
+                  label="Title"
                   inputType="input"
                   register={register("title")}
                   placeholder="Cannot login: Invalid JWT token signature"
@@ -61,7 +61,7 @@ export default function CreateTicketPage() {
 
                 <TicketInput
                   id="description"
-                  label="Detailed Description"
+                  label="Description"
                   inputType="textarea"
                   register={register("description")}
                   placeholder="Please specify step-by-step instructions to reproduce the issue. Include browser info, status codes, and error codes."
@@ -72,7 +72,7 @@ export default function CreateTicketPage() {
 
                 <TicketInput
                   id="attachment"
-                  label="Supporting Attachment (Optional)"
+                  label="Attachment (Optional)"
                   inputType="file"
                   register={register("attachmentPath")}
                   fileName={fileName}
