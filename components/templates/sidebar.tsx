@@ -43,7 +43,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     },
     {
       title: "User Management",
-      href: "/users/list",
+      href: "/users",
       icon: Users,
       roles: ["SUPERADMIN"], // only superadmin manages users
     },

@@ -128,11 +128,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
       if (isPublic) {
         router.push("/dashboard");
       }
-      
+
       // Role guards
-      if (pathname.startsWith("/users") && user.role !== "SUPERADMIN") {
-        router.push("/dashboard");
-      }
+      // if (pathname.startsWith("/users") && user.role !== "SUPERADMIN") {
+      //   router.push("/dashboard");
+      // }
+
     } else {
       // Redirect guests trying to access protected paths
       if (!isPublic) {
