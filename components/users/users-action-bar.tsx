@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Search } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Field, FieldLabel } from "@/components/ui/field"
@@ -50,9 +49,9 @@ export function UsersActionBar({ search, setSearch, status, setStatus, setPage }
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="ALL">All Accounts</SelectItem>
-              <SelectItem value="ACTIVE">Active</SelectItem>
-              <SelectItem value="INACTIVE">Inactive</SelectItem>
+              <SelectItem value="ALL">ALL</SelectItem>
+              <SelectItem value="ACTIVE">ACTIVE</SelectItem>
+              <SelectItem value="INACTIVE">INACTIVE</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

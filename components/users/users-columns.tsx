@@ -1,4 +1,3 @@
-import * as React from "react"
 import Link from "next/link"
 import { createColumnHelper } from "@tanstack/react-table"
 import { UserProfile } from "@/types/auth"
