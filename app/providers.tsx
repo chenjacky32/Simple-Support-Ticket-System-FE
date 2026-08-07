@@ -153,18 +153,3 @@ export function Providers({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function useAuth() {
-  const context = React.useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-}
-
-export function useTheme() {
-  const context = React.useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
-}

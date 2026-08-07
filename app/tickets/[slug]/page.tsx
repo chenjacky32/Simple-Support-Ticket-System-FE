@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import DashboardLayout from "@/components/templates/dashboard"
-import { useAuth } from "@/app/providers"
+import { useAuth } from "@/hooks/use-auth"
 import { useTicketDetail } from "@/hooks/use-ticket-detail"
 import { TicketDetailLoading } from "@/components/tickets/detail/ticket-detail-loading"
 import { TicketDetailError } from "@/components/tickets/detail/ticket-detail-error"
