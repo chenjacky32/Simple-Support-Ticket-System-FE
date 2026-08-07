@@ -52,7 +52,7 @@ export function TicketsFilterToolbar({ search, setSearch, status, setStatus, dat
           <Select
             value={status || "ALL"}
             onValueChange={(val) => {
-              setStatus(val === "ALL" ? "" : val)
+              setStatus(val === "ALL" || !val ? "" : val)
               setPage(1)
             }}
           >

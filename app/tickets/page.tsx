@@ -8,7 +8,7 @@ import { TicketsError } from "@/components/tickets/tickets-error"
 import { TicketsTable } from "@/components/tickets/tickets-table"
 import { TicketsPagination } from "@/components/tickets/tickets-pagination"
 import { ticketHelper } from "@/lib/helper"
-import { useAuth } from "@/app/providers"
+import { useAuth } from "@/hooks/use-auth"
 import { useSearchDebounce } from "@/hooks/use-search-debounce"
 import { useTickets } from "@/hooks/use-tickets"
 

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LayoutDashboard, Ticket, PlusCircle, Users, LogOut, X } from "lucide-react"
 import { SidebarContainer } from "@/components/shared/sidebar-container"
-import { useAuth } from "@/app/providers"
+import { useAuth } from "@/hooks/use-auth"
 import { SidebarBrand } from "@/components/shared/sidebar-brand"
 import { SidebarUserCard } from "@/components/shared/sidebar-user-card"
 
@@ -43,7 +43,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     },
     {
       title: "User Management",
-      href: "/users/list",
+      href: "/users",
       icon: Users,
       roles: ["SUPERADMIN"], // only superadmin manages users
     },

@@ -3,7 +3,7 @@
 import * as React from "react"
 import Sidebar from "@/components/templates/sidebar"
 import Header from "@/components/templates/header"
-import { useAuth } from "@/app/providers"
+import { useAuth } from "@/hooks/use-auth"
 
 export default function DashboardLayout({
   children,

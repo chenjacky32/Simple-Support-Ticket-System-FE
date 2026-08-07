@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { loginSchema, type LoginInput } from "@/schemas/auth"
-import { useAuth } from "@/app/providers"
+import { useAuth } from "@/hooks/use-auth"
 import { httpService } from "@/lib/services"
 
 export function useLogin() {

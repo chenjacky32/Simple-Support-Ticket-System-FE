@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { useAuth } from "@/app/providers";
+import { useAuth } from "@/hooks/use-auth";
 import { httpService } from "@/lib/services";
 import { ticketSchema, type TicketInput } from "@/schemas/ticket";
 
