@@ -4,8 +4,8 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 export function TicketCreateSuccess() {
   return (
     <Card className="text-center py-8 space-y-4">
-      <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
-        <CheckCircle2 className="size-8" />
+      <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-(--badge-3)/20">
+        <CheckCircle2 className="h-6 w-6 text-badge-3" />
       </div>
       <h3 className="text-xl font-bold tracking-tight">
         Ticket Created Successfully!
