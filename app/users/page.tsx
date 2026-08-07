@@ -1,7 +1,7 @@
 'use client'
 
 import DashboardLayout from "@/components/templates/dashboard"
-import { useAuth } from "@/app/providers"
+import { useAuth } from "@/hooks/use-auth"
 import { UsersHeader } from "@/components/users/users-header"
 import { UsersActionBar } from "@/components/users/users-action-bar"
 import { UsersLoading } from "@/components/users/users-loading"

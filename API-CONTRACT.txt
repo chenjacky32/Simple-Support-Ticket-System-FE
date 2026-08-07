@@ -705,3 +705,115 @@ ERROR:
     }
 
 
+12.Endpoint     : /api/v1/users/{id}
+method          : GET
+
+request params:
+    - id: <userId> // get from /api/v1/users
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "Fetch users detail successfully",
+    "data": {
+                "id": ULID,
+                "name": "testing",
+                "email": "testing@example.com",
+                "role": "USERS",
+                "isActive": true | false,
+                "createdAt": "2025-01-01T00:00:00Z | null",
+                "updateddAt": "2025-01-01T00:00:00Z | null",
+            }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+13.Endpoint     : /api/v1/users/{id}
+method          : PUT
+
+request params: 
+    - id: <userId> // get from /api/v1/users
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+request body    : 
+```{
+    "name" : "testing",
+    "email" : "testing@example.com",
+    "role" : "USERS | ADMIN | SUPER ADMIN",
+    "isActive": true
+}```
+
+SUCCESS:
+response body   :
+```{                
+    "status": "success",
+    "message": "users status updated successfully",
+    "data": {
+        "id": "ULID",
+        "name": "testing123",
+        "email": "example@example.com",
+        "role": "USERS | ADMIN | SUPER ADMIN",
+        "isActive": true 
+    }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "name": ["Name is required"],
+            "email": ["Email is required"],
+            "role": ["Role is required"],
+            "isActive": ["isActive is required"]
+        }
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }

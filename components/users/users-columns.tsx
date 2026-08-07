@@ -2,7 +2,7 @@ import Link from "next/link"
 import { createColumnHelper } from "@tanstack/react-table"
 import { UserProfile } from "@/types/auth"
 import { Button } from "@/components/ui/button"
-import { Eye } from "lucide-react"
+import { Eye, Pencil } from "lucide-react"
 
 const columnHelper = createColumnHelper<UserProfile>();
 
@@ -67,12 +67,19 @@ export const UsersColumns = (page: number = 1, size: number = 10) => [
     id: "actions",
     header: "Action",
     cell: (props) => (
-      <Link href={`/users/${props.row.original.id}`}>
-        <Button size="sm" variant="outline" className="gap-1.5 h-7 text-xs">
-          <Eye className="size-3.5" />
-          Details
-        </Button>
-      </Link>
+      <div className="flex flex-row gap-2 items-center">
+        <Link href={`/users/${props.row.original.id}`}>
+          <span className="text-primary text-sm cursor-pointer font-medium hover:text-primary/60 underline underline-offset-1">
+            Details
+          </span>
+        </Link>
+        <Link href={`/users/edit/${props.row.original.id}`}>
+          <Button size="sm" variant="outline" className="gap-1.5 h-7 text-xs">
+            <Pencil className="size-3.5" />
+            Edit
+          </Button>
+        </Link>
+      </div>
     ),
   }),
 ];

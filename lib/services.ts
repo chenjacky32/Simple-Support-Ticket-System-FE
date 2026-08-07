@@ -1,9 +1,11 @@
 import { http } from "@/lib/api";
 import type { LoginInput, RegisterInput } from "@/schemas/auth";
 import type { TicketInput } from "@/schemas/ticket";
+import { UserEditInput } from "@/schemas/user";
 import { AuthResponse, UserProfileResponse } from "@/types/auth";
 import { DashboardStatsResponse } from "@/types/dashboard";
 import { TicketDetailResponse, TicketsListResponse } from "@/types/tickets";
+import { UserDetailResponse } from "@/types/users";
 
 export const httpService = {
   // --- Auth ---
@@ -62,6 +64,14 @@ export const httpService = {
   },
   getUsersList: async (params?: Record<string, any>) => {
     const response = await http.get("/users/list", { params });
+    return response.data;
+  },
+  getUserDetails: async (slug: string): Promise<UserDetailResponse> => {
+    const response = await http.get(`/users/${slug}`);
+    return response.data;
+  },
+  updateUsers: async (slug: string, data: UserEditInput) => {
+    const response = await http.put(`/users/${slug}`, data);
     return response.data;
   },
 };

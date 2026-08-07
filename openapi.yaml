@@ -161,6 +161,108 @@ paths:
         '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error403' } } } }
         '404': { description: Not Found, content: { application/json: { schema: { $ref: '#/components/schemas/Error404' } } } }
         '500': { description: Internal Server Error, content: { application/json: { schema: { $ref: '#/components/schemas/Error500' } } } }
+  /api/v1/users/profile:
+    get:
+      summary: Get User Profile
+      tags: [Users]
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: success }
+                  message: { type: string, example: Fetch profile successfully }
+                  data:
+                    type: object
+                    properties:
+                      id: { type: string, example: ULID }
+                      name: { type: string, example: testing123 }
+                      email: { type: string, example: example@example.com }
+                      role: { type: string, example: USERS | ADMIN | SUPER ADMIN }
+                      isActive: { type: boolean, example: true }
+        '401': { description: Unauthorized, content: { application/json: { schema: { $ref: '#/components/schemas/Error401' } } } }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error403' } } } }
+        '500': { description: Internal Server Error, content: { application/json: { schema: { $ref: '#/components/schemas/Error500' } } } }
+  /api/v1/users/{id}:
+    get:
+      summary: Get User Detail
+      tags: [Users]
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: success }
+                  message: { type: string, example: Fetch users detail successfully }
+                  data:
+                    type: object
+                    properties:
+                      id: { type: string, example: ULID }
+                      name: { type: string, example: testing }
+                      email: { type: string, example: testing@example.com }
+                      role: { type: string, example: USERS }
+                      isActive: { type: boolean, example: true }
+                      createdAt: { type: string, example: '2025-01-01T00:00:00Z | null' }
+                      updatedAt: { type: string, example: '2025-01-01T00:00:00Z | null' }
+        '401': { description: Unauthorized, content: { application/json: { schema: { $ref: '#/components/schemas/Error401' } } } }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error403' } } } }
+        '404': { description: Not Found, content: { application/json: { schema: { $ref: '#/components/schemas/Error404' } } } }
+        '500': { description: Internal Server Error, content: { application/json: { schema: { $ref: '#/components/schemas/Error500' } } } }
+    put:
+      summary: Update User Detail
+      tags: [Users]
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string, example: testing }
+                email: { type: string, example: testing@example.com }
+                role: { type: string, example: USERS | ADMIN | SUPER ADMIN }
+                isActive: { type: boolean, example: true }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: success }
+                  message: { type: string, example: users status updated successfully }
+                  data:
+                    type: object
+                    properties:
+                      id: { type: string, example: ULID }
+                      name: { type: string, example: testing123 }
+                      email: { type: string, example: example@example.com }
+                      role: { type: string, example: USERS | ADMIN | SUPER ADMIN }
+                      isActive: { type: boolean, example: true }
+        '401': { description: Unauthorized, content: { application/json: { schema: { $ref: '#/components/schemas/Error401' } } } }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error403' } } } }
+        '422': { description: Unprocessable Entity, content: { application/json: { schema: { $ref: '#/components/schemas/Error422' } } } }
+        '500': { description: Internal Server Error, content: { application/json: { schema: { $ref: '#/components/schemas/Error500' } } } }
   /api/v1/users/{id}/status:
     patch:
       summary: Update User Status
@@ -202,32 +304,7 @@ paths:
         '422': { description: Unprocessable Entity, content: { application/json: { schema: { $ref: '#/components/schemas/Error422' } } } }
         '404': { description: Not Found, content: { application/json: { schema: { $ref: '#/components/schemas/Error404' } } } }
         '500': { description: Internal Server Error, content: { application/json: { schema: { $ref: '#/components/schemas/Error500' } } } }
-  /api/v1/users/profile:
-    get:
-      summary: Get User Profile
-      tags: [Users]
-      security: [{ bearerAuth: [] }]
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status: { type: string, example: success }
-                  message: { type: string, example: Fetch profile successfully }
-                  data:
-                    type: object
-                    properties:
-                      id: { type: string, example: ULID }
-                      name: { type: string, example: testing123 }
-                      email: { type: string, example: example@example.com }
-                      role: { type: string, example: USERS | ADMIN | SUPER ADMIN }
-                      isActive: { type: boolean, example: true }
-        '401': { description: Unauthorized, content: { application/json: { schema: { $ref: '#/components/schemas/Error401' } } } }
-        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error403' } } } }
-        '500': { description: Internal Server Error, content: { application/json: { schema: { $ref: '#/components/schemas/Error500' } } } }
+
   /api/v1/tickets:
     get:
       summary: List Tickets
