@@ -1,0 +1,819 @@
+API CONTRACT - SIMPLE SUPPORT TICKET SYSTEM
+
+
+1.Endpoint      : /api/v1/auth/login
+method          : POST
+
+request body    : 
+```{
+    "email": example@example.com
+    "password": testing123
+}```
+
+SUCCESS:
+response body   :
+```{
+    "status": "success",
+    "message": "Login Successfull",
+    "data": {
+        "accessToken" : "EyXXXXXX"
+    }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "email": ["Email is required"],
+            "password": ["Password is required"],
+            "confirmPassword": ["Confirm password is required"]
+        }
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+
+
+
+2.Endpoint      : /api/v1/auth/register
+method          : POST
+
+request body    : 
+```{
+    "name"            :   "testing123"
+    "email"           :   "example@example.com"
+    "password"        :   "testing123"
+    "confirmPassword" :   "testing123"
+}```
+
+SUCCESS:
+response body   :
+```{
+    "status": "success",
+    "message": "Login Successfull",
+    "data": {
+        "accessToken" : "EyXXXXXX"
+    }
+}```
+
+ERROR:
+- 409 Conflict
+    {
+        "status":"fail",
+        "message": "Email Already Exists",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "email": ["Email is required"],
+            "password": ["Password is required"],
+            "confirmPassword": ["Confirm password is required"]
+        }
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+3.Endpoint      : /api/v1/users/list?page="1"&size="10"&status="active"&search="name"
+method          : GET
+
+request params:
+    - page : "1"
+    - size : "10"
+    - status : "active"
+    - search : "name"
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "ok",
+    "meta": {
+        "page"          : "1",
+        "size"          : "10",
+        "totalRecord"   : "100",
+        "totalPage"     : "10",
+        "hasPrev"       : true,
+        "hasNext"       : true
+        },
+    "data": [
+                {
+                    "id": "ULID",
+                    "name": "testing123",
+                    "email": "example@example.com",
+                    "role": "USERS",
+                    "isActive": true 
+                },
+                {
+                    "id": "ULID",
+                    "name": "testing123",
+                    "email": "example@example.com",
+                    "role": "USERS",
+                    "isActive": true 
+                },
+                {
+                    "id": "ULID",
+                    "name": "testing123",
+                    "email": "example@example.com",
+                    "role": "USERS",
+                    "isActive": true 
+                }
+    ]
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Token Invalid | Unauthorized | Token expired",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+4.Endpoint      : /api/v1/users/{id}/status
+method          : PATCH
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+request body    : 
+```{
+    "isActive" : true
+}```
+
+SUCCESS:
+response body   :
+```{
+    "status": "success",
+    "message": "users status updated successfully",
+    "data": {
+        "id": "ULID",
+        "name": "testing123",
+        "email": "example@example.com",
+        "role": "USERS | ADMIN | SUPER ADMIN",
+        "isActive": true 
+    }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "isActive": ["isActive is required"]
+        }
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+
+
+
+5. Endpoint      : /api/v1/users/profile
+method          : GET
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status": "success",
+    "message": "Fetch profile successfully",
+    "data": {
+        "id": "ULID",
+        "name": "testing123",
+        "email": "example@example.com",
+        "role": "USERS | ADMIN | SUPER ADMIN",
+        "isActive": true 
+    }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+
+6.Endpoint      : /api/v1/tickets?page="1"&size="10"&status="Opened"&startDate="2025-01-01"&endDate="2025-12-31"search="title"
+method          : GET
+
+
+request params:
+    - page : "1"
+    - size : "10"
+    - status : "Opened | Inprogress | Resolved"
+    - startDate: YYYY-MM-DD
+    - endDate: YYYY-MM-DD
+    - search : "title"
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "Fetch ticket successfully",
+    "meta": {
+        "page"          : "1",
+        "size"          : "10",
+        "totalRecord"   : "100",
+        "totalPage"     : "10",
+        "hasPrev"       : true,
+        "hasNext"       : true
+        },
+    "data": [
+                {
+                    "id": "ULID",
+                    "date": "2025-01-01T00:00:00Z",
+                    "ticketCode": "001/TICKET/07/2026",
+                    "title": "Ticket Title",
+                    "description": "Ticket Description",
+                    "attachmentPath": "<PATH>",
+                    "status": "Opened | Inprogress | Resolved",
+                    "resolvedAt": "2025-01-01T00:00:00Z",
+                    "createdBy": {
+                        "name": "testing123",
+                        "email": "example@example.com",
+                        "role": "USERS"     
+                    },
+                }
+                 {
+                    "id": "ULID",
+                    "date": "2025-01-01T00:00:00Z",
+                    "ticketCode": "002/TICKET/07/2026",
+                    "title": "Ticket Title",
+                    "description": "Ticket Description",
+                    "attachmentPath": "<PATH>",
+                    "status": "Opened | Inprogress | Resolved",
+                    "resolvedAt": "2025-01-01T00:00:00Z",
+                    "createdBy": {
+                        "name": "testing123",
+                        "email": "example@example.com",
+                        "role": "USERS"     
+                    },
+                }
+            ]
+    }```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+
+7.Endpoint      : /api/v1/tickets
+method          : POST
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+request body    : 
+```{
+    "title"             : "Ticket Title",
+    "description"       : "Ticket Description",
+    "attachmentPath"    : "<PATH>"
+}```
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "New ticket created successfully",
+    "data": {
+                "id": "ULID",
+                "date": "2025-01-01T00:00:00Z",
+                "ticketCode": "001/TICKET/07/2026",
+                "title": "Ticket Title",
+                "description": "Ticket Description",
+                "attachmentPath": "<PATH>",
+                "status": "Opened | Inprogress | Resolved",
+                "resolvedAt": "2025-01-01T00:00:00Z | null",
+                "createdBy": {
+                    "name": "testing123",
+                    "email": "example@example.com",
+                    "role": "USERS"     
+                }
+            }
+    }```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "title": ["Title is required"],
+            "description": ["Description is required"],
+        }
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+
+8.Endpoint      : /api/v1/tickets/{id}
+method          : GET
+
+request params:
+    - id: <ticketId> // get from /api/v1/tickets
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "Fetch ticket detail successfully",
+    "data":  {
+                "id": "ULID",
+                "date": "2025-01-01T00:00:00Z",
+                "ticketCode": "001/TICKET/07/2026",
+                "title": "Ticket Title",
+                "description": "Ticket Description",
+                "attachmentPath": "<PATH>",
+                "status": "Opened | Inprogress | Resolved",
+                "resolvedAt": "2025-01-01T00:00:00Z | null",
+                "createdBy": {
+                    "name": "testing123",
+                    "email": "example@example.com",
+                    "role": "USERS"     
+                }
+                replies: [
+                    {
+                        id: "ULID",
+                        message: "Ticket Replies",
+                        createdAt: "2025-01-01T00:00:00Z",
+                        createdBy: {
+                            name: "testing123",
+                            email: "example@example.com",
+                            role: "USERS"     
+                        }
+                    },
+                    {
+                        id: "ULID",
+                        message: "Ticket Replies",
+                        createdAt: "2025-01-01T00:00:00Z",
+                        createdBy: {
+                            name: "testing123",
+                            email: "example@example.com",
+                            role: "ADMIN"     
+                        }
+                    }
+                ]
+            }
+    }```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+9.Endpoint      : /api/v1/tickets/{id}/replies
+method          : POST
+
+request params:
+    - id: <ticketId> // get from /api/v1/tickets
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+request body: 
+```
+{
+    message: "okayyy, we will fix it soon"
+}
+```
+
+SUCCESS:
+response body   :
+```
+{
+    "status": "success",
+    "message": "Reply added successfully",
+    "data": {
+        "id": "ULID_REPLY",
+        "ticketId": "ULID_TIKET", 
+        "message": "okayyy, we will fix it soon",
+        "createdAt": "2025-01-01T00:00:00Z",
+        "createdBy": {
+            "name": "testing123",
+            "email": "example@example.com",
+            "role": "USERS"     
+        }
+    }
+}
+```
+
+ERROR:
+
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "message": ["Message is required"]
+        }
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+10.Endpoint      : /api/v1/dashboard/stat?startDate=2025-01-01&endDate=2025-12-31
+method          : GET
+
+request params:
+    - startDate : "YYYY-MM-DD"
+    - endDate : "YYYY-MM-DD"
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "Fetch dashboard stats successfully",
+    "data": {
+        "startDate"         : "2025-01-01",
+        "endDate"           : "2025-12-31",
+        "totalTickets"       : 100,
+        "openedTickets"      : 45,
+        "inprogressTickets"  : 25,
+        "resolvedTickets"    : 30,
+        "statusCompositions":   [
+            { 
+                "status": "Opened", 
+                "percentage": 45, 
+                "count": 45 
+            },
+            { 
+                "status": "In Progress", 
+                "percentage": 20, 
+                "count": 20 
+            },
+            { 
+                "status": "Resolved", 
+                "percentage": 35, 
+                "count": 35 
+            }
+        ]
+    }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+
+11.Endpoint      : /api/v1/tickets/{id}/status
+method           : PATCH
+
+request params:
+    - id: <ticketId> // get from /api/v1/tickets
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+request body:
+```{
+    "status": "IN_PROGRESS | RESOLVED"
+}```
+
+SUCCESS:
+response body   :
+```
+{
+    "status": "success",
+    "message": "Ticket status updated successfully",
+    "data": {
+        "id": "ULID_TIKET",
+        "status": "IN_PROGRESS | RESOLVED",
+        "updatedAt": "2025-01-01T00:00:00Z",
+        "updatedBy": {
+            "name": "testing123",
+            "email": "example@example.com",
+            "role": "ADMIN"     
+        }
+    }
+}
+```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "status": ["Status must be IN_PROGRESS or RESOLVED"]
+        }
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+12.Endpoint     : /api/v1/users/{id}
+method          : GET
+
+request params:
+    - id: <userId> // get from /api/v1/users
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+SUCCESS:
+response body   :
+```{
+    "status"    : "success",
+    "message"   : "Fetch users detail successfully",
+    "data": {
+                "id": ULID,
+                "name": "testing",
+                "email": "testing@example.com",
+                "role": "USERS",
+                "isActive": true | false,
+                "createdAt": "2025-01-01T00:00:00Z | null",
+                "updateddAt": "2025-01-01T00:00:00Z | null",
+            }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 404 Not Found
+    {
+        "status": "fail",
+        "message": "Resource not found",
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
+
+
+13.Endpoint     : /api/v1/users/{id}
+method          : PUT
+
+request params: 
+    - id: <userId> // get from /api/v1/users
+
+request header: 
+    - Authorization: Bearer <accessToken>
+
+request body    : 
+```{
+    "name" : "testing",
+    "email" : "testing@example.com",
+    "role" : "USERS | ADMIN | SUPER ADMIN",
+    "isActive": true
+}```
+
+SUCCESS:
+response body   :
+```{                
+    "status": "success",
+    "message": "users status updated successfully",
+    "data": {
+        "id": "ULID",
+        "name": "testing123",
+        "email": "example@example.com",
+        "role": "USERS | ADMIN | SUPER ADMIN",
+        "isActive": true 
+    }
+}```
+
+ERROR:
+- 401 Unauthorized
+    {
+        "status": "fail",
+        "message": "Invalid credentials",
+    }
+
+- 403 Forbidden
+    {
+        "status": "fail",
+        "message": "You don't have permission to access this resource",
+    }
+
+- 422 Unprocessable Entity (error validasi)
+    {
+        "status": "fail",
+        "message": "Validation error",
+        "errors": {
+            "name": ["Name is required"],
+            "email": ["Email is required"],
+            "role": ["Role is required"],
+            "isActive": ["isActive is required"]
+        }
+    }
+
+- 500 Internal Server Error 
+    {
+        "status": "fail",
+        "message": "Internal server error"
+    }
