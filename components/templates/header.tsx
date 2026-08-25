@@ -15,8 +15,8 @@ export default function Header({ onMenuClick, title }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="w-full flex h-16 fixed top-0 items-center 
-            justify-start border-b border-border 
+    <header className="w-full flex h-16 sticky top-0 z-40 items-center 
+            justify-between border-b border-border 
             bg-card p-6 md:p-8 mx-auto">
       <div className="flex items-center gap-3">
         <button

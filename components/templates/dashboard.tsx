@@ -40,7 +40,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="flex min-h-screen bg-background text-foreground overflow-hidden">
+    <div className="flex h-screen bg-background text-foreground overflow-hidden">
       {/* Sidebar Navigation */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -50,7 +50,7 @@ export default function DashboardLayout({
 
         {/* Scrollable Work Area */}
         <main className="w-full flex-1 overflow-y-auto p-6 md:p-8 bg-muted/10 mx-auto">
-          <div className="mx-auto my-16">
+          <div className="mx-auto mb-16">
             {children}
           </div>
         </main>

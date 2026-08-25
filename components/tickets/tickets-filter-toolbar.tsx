@@ -33,7 +33,7 @@ export function TicketsFilterToolbar({ search, setSearch, status, setStatus, dat
       <Field>
         <FieldLabel className="text-xs font-semibold uppercase" htmlFor="search">Search</FieldLabel>
         <div className="relative">
-          <Search className="absolute left-3 top-2.5 size-4 text-muted-foreground" />
+          <Search className="absolute z-10 left-3 top-2.5 size-4 text-muted-foreground" />
           <Input
             id="search"
             type="text"
